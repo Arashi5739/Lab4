@@ -5,18 +5,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JCheckBox;
 
-public class OutputGraph implements ActionListener
-{
-	JCheckBox check_save;
-	OutputGraph(JCheckBox save)
-	{
-		check_save=save;
-	}
+public class OutputGraph implements ActionListener {
+    JCheckBox checksave;
+    OutputGraph(final JCheckBox save) {
+        checksave = save;
+    }
 
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		Main.outputjpg(check_save.isSelected());
-	}
-
+    @Override
+    public void actionPerformed(final ActionEvent e) {
+        Main.outputjpg(checksave.isSelected());
+    }
 }
