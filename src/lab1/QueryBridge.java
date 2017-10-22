@@ -3,12 +3,10 @@ package lab1;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
-import java.util.logging.Logger;
 
 import javax.swing.JTextField;
 
 public class QueryBridge implements ActionListener {
-    static final Logger log = Logger.getLogger(QueryBridge.class.getName());
     JTextField textword1, textword2, textword3;
     QueryBridge(final JTextField word1, final JTextField word2, final JTextField word3) {
         textword1 = word1;
@@ -21,11 +19,11 @@ public class QueryBridge implements ActionListener {
                word2 = textword2.getText();
         Set<Integer> bridges = Main.getbridge(word1, word2);
         if (bridges == null) {
-            log.fine("No word1 or word2 in the graph!");
+            System.out.println("No word1 or word2 in the graph!");
             textword3.setText("No word1 or word2 in the graph!");
         } else {
             if (bridges.isEmpty()) {
-                log.fine("No bridge words from word1 to word2!");
+                System.out.println("No bridge words from word1 to word2!");
                 textword3.setText("No bridge words from word1 to word2!");
             } else {
                 StringBuilder output = new StringBuilder("The bridge words from word1 to word2 are:");
@@ -38,7 +36,7 @@ public class QueryBridge implements ActionListener {
                     }
                     first = false;
                 }
-                log.fine(output.toString());
+                System.out.println(output.toString());
                 textword3.setText(output.toString());
             }
         }

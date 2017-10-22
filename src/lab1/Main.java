@@ -10,8 +10,6 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,7 +20,6 @@ import javax.swing.JTextField;
 
 public class Main {
     //TODO
-    static final Logger log = Logger.getLogger(Main.class.getName());
     static final int img_w = 660, img_h = 800;
     static final int window_w = img_w + 340, window_h = img_h + 40;
     public static DirectedGraph graph = new DirectedGraph();
@@ -67,7 +64,7 @@ public class Main {
             return ans;
         }
         ans.offer(n1);
-        log.fine(graph.wordof.get(n1));
+        System.out.println(graph.wordof.get(n1));
         Stack<Integer> s = new Stack<Integer>();
         s.push(n2);
         s.push(n1);
@@ -78,7 +75,7 @@ public class Main {
                 continue;
             }
             if (floyd_path[i][j] == 0) {
-                log.fine(graph.wordof.get(j));
+                System.out.println(graph.wordof.get(j));
                 ans.offer(j);
             } else {
                 s.push(j);
@@ -99,13 +96,9 @@ public class Main {
             writer.println("digraph " + gvname);
             writer.println("{");
             for (Map.Entry<Integer, StartPoint> i:Main.graph.startpoint.entrySet()) {
-                if (log.isLoggable(Level.FINE)) {
-                log.fine("{" + Main.graph.wordof.get(i.getKey()) + "}");
-                }
+                System.out.println("{" + Main.graph.wordof.get(i.getKey()) + "}");
                 for (EndPoint j:i.getValue().endpoint) {
-                    if (log.isLoggable(Level.FINE)) {
-                    log.fine(Main.graph.wordof.get(j.index) + "[" + j.weight + "]");
-                    }
+                    System.out.println(Main.graph.wordof.get(j.index) + "[" + j.weight + "]");
                     writer.print("    ");
                     writer.print(Main.graph.wordof.get(i.getKey()));
                     writer.print(" -> ");
@@ -120,7 +113,7 @@ public class Main {
                     }
                     writer.println("]");
                 }
-                log.fine("");
+                System.out.println("");
             }
             writer.println("}");
             writer.println();
@@ -138,22 +131,22 @@ public class Main {
                 }
                 Runtime.getRuntime().exec("rm /dev/shm/" + gvname + ".jpg").waitFor();
             } catch (InterruptedException e) {
-                log.fine("interrupted");
+                System.out.println("interrupted");
             }
         } catch (IOException e1) {
-            log.fine("output failed.");
+            System.out.println("output failed.");
         }
     }
     static JLabel graph_label = new JLabel();
     public static void main(String args[]){
         if (System.getProperty("os.name").toLowerCase().compareTo("linux") != 0) {
-            log.fine("This program can ONLY run in linux.");
-            return;
+            System.out.println("This program can ONLY run in linux.");
+            //return;
         }
         try {
             Runtime.getRuntime().exec("dot -V");
         } catch (IOException e) {
-            log.fine("Package graphviz is required.");
+            System.out.println("Package graphviz is required.");
             return;
         }
         JFrame fr_main = new JFrame();

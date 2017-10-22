@@ -6,6 +6,6 @@ import java.awt.event.ActionListener;
 public class RandomWalkStop implements ActionListener {
     @Override
     public void actionPerformed(final ActionEvent e) {
-        RandomWalk.running = false;
+        RandomWalk.setrunning(false);
     }
 }

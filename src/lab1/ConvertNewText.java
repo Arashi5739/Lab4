@@ -3,11 +3,10 @@ package lab1;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
-import java.util.logging.Logger;
+
 import javax.swing.JTextField;
 
 public class ConvertNewText implements ActionListener {
-    static final Logger log = Logger.getLogger(ConvertNewText.class.getName());
     private transient final JTextField text_newtext, text_newtext_converted;
     ConvertNewText(final JTextField newtext, final JTextField newtext_converted) {
         text_newtext = newtext;
@@ -26,8 +25,7 @@ public class ConvertNewText implements ActionListener {
             ans.append(Main.graph.wordof.get(bridge.toArray()[0])).append(' ');
             }
         ans.append(words[words.length - 1]);
-        //System.out.println(ans.toString());
-        log.fine(ans.toString());
+        System.out.println(ans.toString());
         text_newtext_converted.setText(ans.toString());
     }
 }
